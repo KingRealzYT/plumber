@@ -1,0 +1,6 @@
+dist/
+cmu_graphics/
+venv/
+plumberman.spec
+options.spec
+.idea/
