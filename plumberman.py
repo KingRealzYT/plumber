@@ -1,5 +1,3 @@
-import pygame
-
 from cmu_graphics import *
 
 # Initial background
@@ -114,7 +112,7 @@ pauseMenu5 = Label('U to Unpause', 200, 200, size=15, fill='white', visible=Fals
 
 def onStep():
     # Startscreen Hitboxes
-    if app.startScreen == True:
+    if app.startScreen:
         if gameNameHitbox.containsShape(cursor1) or gameNameHitbox.containsShape(cursor2):
             gameNameHitbox.visible = True
         else:
@@ -144,7 +142,7 @@ def onStep():
             exitGameButtonBackground.visible = True
         else:
             exitGameButtonBackground.visible = False
-        if app.confirmExit == True:
+        if app.confirmExit:
             if exitConfirmation4.containsShape(cursor1) or exitConfirmation4.containsShape(cursor2):
                 exitConfirmation4.visible = True
             else:
@@ -155,8 +153,8 @@ def onStep():
                 exitConfirmation5.visible = False
 
     # Control Pause Menu Hitbox
-    if app.controlScreen == True:
-        if app.pauseControlScreenActive == True:
+    if app.controlScreen:
+        if app.pauseControlScreenActive:
             if controlPMenu1.containsShape(cursor1) or controlPMenu1.containsShape(cursor2):
                 cursor1.fill = 'black'
                 cursor2.fill = 'black'
@@ -170,8 +168,8 @@ def onStep():
             cursor2.fill = 'white'
 
     # Tree Hitbox Level 1
-    if app.mistyMeadows == True:
-        if app.immortalPlayer == False:
+    if app.mistyMeadows:
+        if not app.immortalPlayer:
             if level1Tree1.hitsShape(player1):
                 app.playerControlMovement = False
                 player1.centerX = 25
@@ -226,19 +224,19 @@ def onStep():
             level1TreeLeaf11.visible = False
             level1TreeLeaf12.visible = False
             app.endGame = True
-            if app.endGame == True:
+            if app.endGame:
                 gameFinishLabel.visible = True
                 r2restartLabel.visible = True
 
     # Levelscreen Hitbox
-    if app.levelScreen == True:
+    if app.levelScreen:
         if levelChooserLabel1Hitbox.containsShape(cursor1) or levelChooserLabel1Hitbox.containsShape(cursor2):
             levelChooserLabel1Hitbox.visible = True
         else:
             levelChooserLabel1Hitbox.visible = False
 
     # Back Button Hitbox
-    if app.backButtonEnabled == True:
+    if app.backButtonEnabled:
         if backLabelHitbox.containsShape(cursor1) or backLabelHitbox.containsShape(cursor2):
             backLabelHitbox.visible = True
         else:
@@ -259,7 +257,7 @@ def onMouseMove(x, y):
 
 def onMousePress(x, y):
     # If statements to check if a button is pressed
-    if app.backButtonEnabled == True:
+    if app.backButtonEnabled:
         if backLabelHitbox.containsShape(cursor1) or backLabelHitbox.containsShape(cursor2):
             gameName.visible = True
             gameInfo.visible = True
@@ -297,7 +295,7 @@ def onMousePress(x, y):
             level1Name.visible = False
             exitGameButtonLabel.visible = True
 
-    if app.startScreen == True:
+    if app.startScreen:
         if exitGameButtonBackground.containsShape(cursor1) or exitGameButtonBackground.containsShape(cursor2):
             app.confirmExit = True
             exitConfirmation1.visible = True
@@ -305,7 +303,7 @@ def onMousePress(x, y):
             exitConfirmation3.visible = True
             exitConfirmation4.visible = True
             exitConfirmation5.visible = True
-        if app.confirmExit == True:
+        if app.confirmExit:
             if exitConfirmation4.containsShape(cursor1) or exitConfirmation4.containsShape(cursor2):
                 exit()
             elif exitConfirmation5.containsShape(cursor1) or exitConfirmation5.containsShape(cursor2):
@@ -335,7 +333,7 @@ def onMousePress(x, y):
             app.backButtonEnabled = True
             app.infoScreen = True
             exitGameButtonLabel.visible = False
-            if app.infoScreen == True:
+            if app.infoScreen:
                 LabelInfo1.visible = True
                 LabelInfo2.visible = True
                 LabelInfo3.visible = True
@@ -357,7 +355,7 @@ def onMousePress(x, y):
             app.backButtonEnabled = True
             backLabel.visible = True
             exitGameButtonLabel.visible = False
-            if app.levelScreen == True:
+            if app.levelScreen:
                 levelChooserLabel1.visible = True
                 infoLabelLevel.visible = True
                 level1Name.visible = True
@@ -379,7 +377,7 @@ def onMousePress(x, y):
             app.backButtonEnabled = True
             backLabel.visible = True
             exitGameButtonLabel.visible = False
-            if app.controlScreen == True:
+            if app.controlScreen:
                 rightControlLabel.visible = True
                 leftControlLabel.visible = True
                 pauseControlLabel.visible = True
@@ -405,7 +403,7 @@ def onMousePress(x, y):
             app.startScreen = False
             app.mistyMeadows = True
             exitGameButtonLabel.visible = False
-            if app.mistyMeadows == True:
+            if app.mistyMeadows:
                 app.background = 'skyBlue'
                 cursor1.visible = False
                 cursor2.visible = False
@@ -417,7 +415,7 @@ def onMousePress(x, y):
                 level1TreeLeaf12.visible = True
 
     # Controls Pause Menu
-    elif app.controlScreen == True:
+    elif app.controlScreen:
         if controlPMenu4.containsShape(cursor1) or controlPMenu4.containsShape(cursor2):
             gameName.visible = True
             gameInfo.visible = True
@@ -461,8 +459,8 @@ def onMousePress(x, y):
             level1Name.visible = False
             exitGameButtonLabel.visible = False
 
-    elif app.mistyMeadows == True:
-        if app.pauseScreenActive == True:
+    elif app.mistyMeadows:
+        if app.pauseScreenActive:
             if pauseMenu4.containsShape(cursor1) or pauseMenu4.containsShape(cursor2):
                 gameName.visible = True
                 gameInfo.visible = True
@@ -517,7 +515,7 @@ def onMousePress(x, y):
                 level1Name.visible = False
                 exitGameButtonLabel.visible = False
 
-    elif app.levelScreen == True:
+    elif app.levelScreen:
         if levelChooserLabel1Hitbox.containsShape(cursor1) or levelChooserLabel1Hitbox.containsShape(cursor2):
             gameName.visible = False
             gameInfo.visible = False
@@ -542,7 +540,7 @@ def onMousePress(x, y):
             app.levelScreen = False
             level1Name.visible = False
             exitGameButtonLabel.visible = False
-            if app.mistyMeadows == True:
+            if app.mistyMeadows:
                 app.background = 'skyBlue'
                 cursor1.visible = False
                 cursor2.visible = False
@@ -556,18 +554,18 @@ def onMousePress(x, y):
 
 def onKeyHold(keys):
     # Player Movement in Controls Screen
-    if app.controlScreen == True:
-        if app.playerControlMovement == True:
-            if controlTestPlayer.centerX > 250 and controlTestPlayer.centerX < 390:
+    if app.controlScreen:
+        if app.playerControlMovement:
+            if 250 < controlTestPlayer.centerX < 390:
                 if 'd' in keys:
                     controlTestPlayer.centerX += 5
                 elif 'a' in keys:
                     controlTestPlayer.centerX -= 5
             else:
                 controlTestPlayer.centerX = 320
-    elif app.mistyMeadows == True:
-        if app.playerMovement == True:
-            if player1.centerX >= 10 and player1.centerX <= 395:
+    elif app.mistyMeadows:
+        if app.playerMovement:
+            if 10 <= player1.centerX <= 395:
                 if 'd' in keys:
                     player1.centerX += 5
                     player1.toFront()
@@ -586,7 +584,7 @@ def onKeyRelease(key):
 
 
 def onKeyPress(key):
-    if app.controlScreen == True:
+    if app.controlScreen:
         if key == 'p':
             app.playerControlMovement = False
             controlPMenu1.visible = True
@@ -619,7 +617,7 @@ def onKeyPress(key):
             controlPMenu4.visible = False
             app.pauseControlScreenActive = False
 
-    if app.mistyMeadows == True:
+    if app.mistyMeadows:
         if key == 'p':
             app.playerMovement = False
             pauseMenu1.visible = True
@@ -668,7 +666,7 @@ def onKeyPress(key):
             cursor2.visible = False
             app.pauseScreenActive = False
 
-    if app.endGame == True:
+    if app.endGame:
         if key == 'r':
             gameName.visible = True
             gameInfo.visible = True
@@ -781,5 +779,6 @@ def onKeyPress(key):
         player1.centerX = 0
         app.pauseScreenActive = False
         exitGameButtonLabel.visible = True
+
 
 cmu_graphics.run()
