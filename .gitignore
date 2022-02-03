@@ -4,3 +4,6 @@ venv/
 plumberman.spec
 options.spec
 .idea/
+build/
+plumberman.build/
+plumberman.dist/
